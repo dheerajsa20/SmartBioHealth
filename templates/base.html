@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Smart Bio-Health System{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('index') }}" class="brand">
+            <i class="fa-solid fa-heart-pulse"></i> Smart Bio-Health
+        </a>
+        <div class="links">
+            <a href="{{ url_for('index') }}">Dashboard</a>
+            <a href="{{ url_for('report') }}">My Report</a>
+            {% if session.get('admin_logged_in') %}
+                <a href="{{ url_for('admin_dashboard') }}">Admin</a>
+                <a href="{{ url_for('admin_logout') }}">Logout</a>
+            {% else %}
+                <a href="{{ url_for('admin_login') }}">Admin Login</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <div class="container">
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+              <div class="flash">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Smart Bio-Health Monitoring and Advisory System | Biology for Engineers Mini Project</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

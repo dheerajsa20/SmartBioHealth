@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="card" style="margin-bottom: 2rem;">
+    <h2><i class="fa-solid fa-shield-halved"></i> Admin Dashboard</h2>
+    <p>Welcome, Administrator. Here you can view all user health checks and system rules.</p>
+</div>
+
+<div class="card" style="margin-bottom: 2rem;">
+    <h3><i class="fa-solid fa-users-viewfinder"></i> Recent User Health Checks</h3>
+    {% if checks %}
+    <div style="overflow-x: auto; max-height: 400px;">
+        <table>
+            <thead>
+                <tr>
+                    <th>Date & Time</th>
+                    <th>Session ID</th>
+                    <th>Check Type</th>
+                    <th>Result</th>
+                    <th>Advice</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for check in checks %}
+                <tr>
+                    <td>{{ check[5][:16] }}</td>
+                    <td style="font-size: 0.8rem; color: #888;">{{ check[1][:8] }}...</td>
+                    <td><strong>{{ check[2] }}</strong></td>
+                    <td>{{ check[3] }}</td>
+                    <td>{{ check[4] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <p>No records found.</p>
+    {% endif %}
+</div>
+
+<div class="grid">
+    <div class="card">
+        <h3>Disease Rules (Total: {{ rules|length }})</h3>
+        <ul style="padding-left: 1rem; color: #555;">
+            {% for r in rules[:5] %}
+            <li><strong>{{ r[1] }}</strong>: {{ r[2] }}</li>
+            {% endfor %}
+            {% if rules|length > 5 %}<li>...and more</li>{% endif %}
+        </ul>
+    </div>
+    
+    <div class="card">
+        <h3>First Aid Info (Total: {{ first_aids|length }})</h3>
+        <ul style="padding-left: 1rem; color: #555;">
+            {% for fa in first_aids[:5] %}
+            <li><strong>{{ fa[1] | capitalize }}</strong>: {{ fa[2][:50] }}...</li>
+            {% endfor %}
+            {% if first_aids|length > 5 %}<li>...and more</li>{% endif %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

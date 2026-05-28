@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}My Health Report{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2><i class="fa-solid fa-file-medical"></i> My Health Report</h2>
+    
+    {% if checks %}
+    <div style="overflow-x: auto;">
+        <table>
+            <thead>
+                <tr>
+                    <th>Date & Time</th>
+                    <th>Check Type</th>
+                    <th>Result</th>
+                    <th>Advice</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for check in checks %}
+                <tr>
+                    <td>{{ check[3][:16] }}</td>
+                    <td><strong>{{ check[0] }}</strong></td>
+                    <td>{{ check[1] }}</td>
+                    <td>{{ check[2] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <p>No health checks recorded yet in this session.</p>
+    <a href="{{ url_for('index') }}" class="btn" style="max-width: 200px; margin-top: 1rem;">Take a Test</a>
+    {% endif %}
+</div>
+{% endblock %}

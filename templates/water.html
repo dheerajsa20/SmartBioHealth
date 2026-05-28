@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Water Quality Checker{% endblock %}
+
+{% block content %}
+<div class="card" style="max-width: 500px; margin: 0 auto;">
+    <h2 class="text-center"><i class="fa-solid fa-glass-water"></i> Water Quality Checker</h2>
+    
+    <form method="POST" action="{{ url_for('water') }}">
+        <div class="form-group">
+            <label for="ph">pH Level (0-14):</label>
+            <input type="number" id="ph" name="ph" required min="0" max="14" step="0.1" placeholder="e.g. 7.2">
+        </div>
+        <div class="form-group">
+            <label for="tds">TDS (Total Dissolved Solids in mg/L):</label>
+            <input type="number" id="tds" name="tds" required min="0" max="5000" placeholder="e.g. 150">
+        </div>
+        <div class="form-group">
+            <label for="turbidity">Turbidity (NTU):</label>
+            <input type="number" id="turbidity" name="turbidity" required min="0" max="100" step="0.1" placeholder="e.g. 1.5">
+        </div>
+        <button type="submit" class="btn">Check Water Safety</button>
+    </form>
+</div>
+{% endblock %}

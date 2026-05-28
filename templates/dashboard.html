@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard - Bio Health{% endblock %}
+
+{% block content %}
+<div class="text-center" style="margin-bottom: 2rem;">
+    <h1><i class="fa-solid fa-stethoscope"></i> Welcome to Smart Bio-Health</h1>
+    <p>Your personal AI-driven health monitoring and advisory assistant.</p>
+</div>
+
+<div class="grid">
+    <a href="{{ url_for('bmi') }}" class="card module-card">
+        <i class="fa-solid fa-weight-scale module-icon"></i>
+        <h3>BMI Calculator</h3>
+        <p>Check your Body Mass Index</p>
+    </a>
+    
+    <a href="{{ url_for('disease') }}" class="card module-card">
+        <i class="fa-solid fa-virus-covid module-icon"></i>
+        <h3>Disease Predictor</h3>
+        <p>Predict common diseases by symptoms</p>
+    </a>
+    
+    <a href="{{ url_for('bp') }}" class="card module-card">
+        <i class="fa-solid fa-heart-circle-bolt module-icon"></i>
+        <h3>Blood Pressure</h3>
+        <p>Analyze your BP readings</p>
+    </a>
+    
+    <a href="{{ url_for('diabetes') }}" class="card module-card">
+        <i class="fa-solid fa-droplet module-icon"></i>
+        <h3>Diabetes Risk</h3>
+        <p>Assess your diabetes risk score</p>
+    </a>
+    
+    <a href="{{ url_for('nutrition') }}" class="card module-card">
+        <i class="fa-solid fa-apple-whole module-icon"></i>
+        <h3>Nutrition Calculator</h3>
+        <p>Calculate daily protein needs</p>
+    </a>
+    
+    <a href="{{ url_for('water') }}" class="card module-card">
+        <i class="fa-solid fa-glass-water module-icon"></i>
+        <h3>Water Quality</h3>
+        <p>Check if your water is safe</p>
+    </a>
+    
+    <a href="{{ url_for('firstaid') }}" class="card module-card">
+        <i class="fa-solid fa-kit-medical module-icon"></i>
+        <h3>First Aid Guide</h3>
+        <p>Emergency medical steps</p>
+    </a>
+</div>
+{% endblock %}
